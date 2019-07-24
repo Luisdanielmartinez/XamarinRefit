@@ -23,7 +23,7 @@ namespace XamarinRefit.ViewModels
         {
             LoadPost();
         }
-
+        //cambio
         private async void LoadPost()
         {
             try {
