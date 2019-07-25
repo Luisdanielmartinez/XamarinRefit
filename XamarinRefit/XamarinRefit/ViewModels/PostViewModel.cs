@@ -28,7 +28,7 @@ namespace XamarinRefit.ViewModels
         {
             try {
                 var apiService =  RestService.For<IApiService>("https://jsonplaceholder.typicode.com");
-                var result = await apiService.Get();
+                var result = await apiService.GET();
                 ListPost = new ObservableCollection<Post>(result);
             }
             catch(Exception ex){

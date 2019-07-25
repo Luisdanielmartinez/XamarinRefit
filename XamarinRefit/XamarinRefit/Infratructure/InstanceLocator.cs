@@ -12,7 +12,7 @@ namespace XamarinRefit.Infratructure
 
         public InstanceLocator()
         {
-            Main = MainViewModel.GetInstace();
+            Main = MainViewModel.GetInstance();
         }
     }
 }

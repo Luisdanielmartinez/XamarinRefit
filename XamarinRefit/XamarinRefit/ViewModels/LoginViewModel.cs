@@ -2,12 +2,13 @@
 namespace XamarinRefit.ViewModels
 {
     using GalaSoft.MvvmLight.Command;
-    using ProyectRefit.Views;
+   
     using System;
     using System.Collections.Generic;
     using System.Text;
     using System.Windows.Input;
     using Xamarin.Forms;
+    using XamarinRefit.Views;
 
     public class LoginViewModel : BaseViewModel
     {

@@ -12,7 +12,7 @@ namespace XamarinRefit
         {
             InitializeComponent();
             MainViewModel.GetInstance().Login = new LoginViewModel();
-            MainPage = new NavigationPage(new PostPage());
+            MainPage = new NavigationPage(new LoginPage());
         }
 
         protected override void OnStart()
