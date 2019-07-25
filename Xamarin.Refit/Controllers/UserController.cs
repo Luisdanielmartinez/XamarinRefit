@@ -16,7 +16,7 @@ namespace Xamarin.Refit.Controllers
         public UsersController(ApplicationContext context)
         {
             _context = context;
-        }
+        }//sds
         [HttpGet]
         public IEnumerable<User> GET()
         {
