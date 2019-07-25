@@ -22,9 +22,14 @@
                         <ViewCell>
                             <StackLayout>
                                 <Grid>
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding SelectProductCommand}"/>
+                                    </Grid.GestureRecognizers>
+
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                                         <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
 
                                     <Image
@@ -55,6 +60,11 @@
                                     	TextColor="Black">
                                         </Label>
                                     </StackLayout>
+                                    <Image
+                                        Grid.Column="0"
+                                        HeightRequest="120"
+                                        WidthRequest="120"
+                                        Source="ic_arrow_forward_ios"/>
                                 </Grid>
                             </StackLayout>
                         </ViewCell>

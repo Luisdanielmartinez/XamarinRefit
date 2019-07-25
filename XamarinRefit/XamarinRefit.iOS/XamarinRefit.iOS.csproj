@@ -137,4 +137,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\image.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_arrow_forward_ios.png" />
+  </ItemGroup>
 </Project>

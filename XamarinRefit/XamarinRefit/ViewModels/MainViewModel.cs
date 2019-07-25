@@ -19,6 +19,7 @@ namespace XamarinRefit.ViewModels
         public PostViewModel Post { get; set; }
         public ProductViewModel Products { get; set; }
         public ICommand AddProductCommand => new RelayCommand(GoToProduct);
+        public EditProductViewModel EditProduct { get; set; }
         public MainViewModel()
         {
             mainViewModel = this;

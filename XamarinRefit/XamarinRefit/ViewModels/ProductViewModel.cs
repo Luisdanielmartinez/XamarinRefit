@@ -8,6 +8,7 @@ namespace XamarinRefit.ViewModels
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Linq;
     using System.Text;
     using System.Windows.Input;
     using XamarinRefit.Interface;
@@ -15,14 +16,15 @@ namespace XamarinRefit.ViewModels
 
     public class ProductViewModel : BaseViewModel
     {
-        private ObservableCollection<Product> listProdut;
+        private List<Product> myProduct;
+        private ObservableCollection<ProductItemViewModel> listProdut;
         private bool isRefresh;
         public bool IsRefreshing
         {
             get => isRefresh;
             set => SetValue(ref isRefresh, value);
         }
-        public ObservableCollection<Product> ListProduct
+        public ObservableCollection<ProductItemViewModel> ListProduct
         {
             get => listProdut;
             set => SetValue(ref listProdut, value);
@@ -40,8 +42,8 @@ namespace XamarinRefit.ViewModels
             {
                 IsRefreshing = true;
                 var apiService = RestService.For<IApiService>("http://192.168.2.2:8001/api");
-                var response = await apiService.GetProduct();
-                ListProduct = new ObservableCollection<Product>(response);
+               this.myProduct = await apiService.GetProduct();
+                this.RefresProductsList();
                 IsRefreshing = false;
             }
             catch (Exception ex)
@@ -49,6 +51,51 @@ namespace XamarinRefit.ViewModels
 
             }
         }
+        public void AddProductToList(Product product)
+        {
+            this.myProduct.Add(product);
+            this.RefresProductsList();
+        }
+
+        public void UpdateProductInList(Product product)
+        {
+            var previousProduct = this.myProduct.Where(p => p.Id == product.Id).FirstOrDefault();
+            if (previousProduct != null)
+            {
+                this.myProduct.Remove(previousProduct);
+            }
+
+            this.myProduct.Add(product);
+            this.RefresProductsList();
+        }
+
+        public void DeleteProductInList(int productId)
+        {
+            var previousProduct = this.myProduct.Where(p => p.Id == productId).FirstOrDefault();
+            if (previousProduct != null)
+            {
+                this.myProduct.Remove(previousProduct);
+            }
+
+            this.RefresProductsList();
+        }
+
+        private void RefresProductsList()
+        {
+            this.listProdut = new ObservableCollection<ProductItemViewModel>(myProduct.Select(p => new ProductItemViewModel
+            {
+                Id=p.Id,
+                Name=p.Name,
+                Description=p.Description,
+                Price=p.Price,
+                IsAvalible=p.IsAvalible,
+                Image=p.Image
+            })
+            .OrderBy(p => p.Name)
+            .ToList());
+        }
+
+
         private void Refresh()
         {
             IsRefreshing = true;
