@@ -11,7 +11,7 @@ namespace XamarinRefit
         public App()
         {
             InitializeComponent();
-            MainViewModel.GetInstace().Posts = new PostViewModel();
+            MainViewModel.GetInstance().Login = new LoginViewModel();
             MainPage = new NavigationPage(new PostPage());
         }
 

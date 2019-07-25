@@ -12,7 +12,10 @@ namespace XamarinRefit.Interface
     public  interface IApiService
     {
         [Get("/posts")]
-
-        Task<List<Post>> Get();
+        Task<List<Post>> GET();
+        [Get("/Product")]
+        Task<List<Product>> GetProduct();
+        [Post("/Product")]
+        Task PostProduct([Body] Product product);
     }
 }
