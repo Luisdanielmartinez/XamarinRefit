@@ -57,12 +57,25 @@ namespace Xamarin.Refit.Controllers
                     path = $"~/images/Products/{product.ImageFile.FileName}";
                 }
 
-
+                var vProduct = this.ToProduct(product,path);
                 return new CreatedAtRouteResult("creado", new { id = product.Id });
             }
             return BadRequest(ModelState);
 
         }
 
+        private Product ToProduct(ImagenViewModel product, string path)
+        {
+            return new Product
+            {
+                Id = product.Id,
+                Name = product.Name,
+                Description = product.Description,
+                IsAvalible = product.IsAvalible,
+                Price = product.Price,
+                Image=path
+                
+            };
+        }
     }
 }
